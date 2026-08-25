@@ -1,22 +1,19 @@
 #include <iostream>
+#include <thread>
+#include <chrono>
 #include "CacheStore.hpp"
 
 int main() {
     CacheStore cache;
 
-    std::cout << "---- CacheStore Testing ----" << std::endl;
+    std::cout << "---- Active deletion test ----" << std::endl;
 
-    cache.put("user_1", "TEST_USER_1");
-    cache.put("user_2", "TEST_USER_2");
-
-    std::cout << "User 1 " << cache.get("user_1") << std::endl;
-
-    std::cout << "Removing user_1...." << std::endl;
-    cache.remove("user_1");
-
-    std::cout << "User_1" << cache.get("user_1") << std::endl;
-
-    std::cout << "User_2 " << cache.get("user_2") << std::endl;
+    cache.put("temp_key", "Hello (TTL 1 sec)", 1);
+    
+    std::cout << "Main Thread sleeping for 3 seconds" << std::endl;
+    std::this_thread::sleep_for(std::chrono::seconds(3));
+    
+    std::cout << "temp_key " << cache.get("temp_key") << std::endl;
 
     std::cout << "---- End of Testing ----" << std::endl;
 
