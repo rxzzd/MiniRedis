@@ -10,3 +10,7 @@ add_executable(mini_redis
     src/main.cpp
     src/CacheStore.cpp
 )
+
+if (WIN32)
+    target_link_libraries(mini_redis ws2_32)
+endif()
