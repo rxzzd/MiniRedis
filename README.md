@@ -1,4 +1,4 @@
-# Mini-Redis
+# MiniRedis
 
 A thread-safe, in-memory key-value cache store with a built-in TCP server in C++17, including a Python test client.
 
